@@ -81,6 +81,10 @@ function Grid() {
     return null;
   };
 
+  const checkDraw = (grid: Grid): boolean => {
+    return grid.every((row) => row.every((cell) => cell !== "bg-base-100"));
+  };
+
   const addPlayedDisc = (columnIndex: number) => {
     const newIndex = playedDiscToBottom(columnIndex);
     if (newIndex !== null) {
@@ -95,8 +99,13 @@ function Grid() {
       const grid = getGridFromCaseColors(caseColors);
       const row = Math.floor(currentIndex / 7);
       const col = currentIndex % 7;
+
       if (checkWin(grid, row, col)) {
         setWinner(player === 1 ? "Yellow" : "Red");
+        setIsOver(true);
+        setIsModalVisible(true);
+      } else if (checkDraw(grid)) {
+        setWinner(null); // Aucun gagnant
         setIsOver(true);
         setIsModalVisible(true);
       }
@@ -146,10 +155,10 @@ function Grid() {
           positionLeft={`${u1 + r * (currentIndexTop ?? 0)}px`}
         />
       )}
-      {winner && isModalVisible && (
+      {isOver && isModalVisible && (
         <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50">
           <div className="text-white text-4xl">
-            Player {winner} wins!{" "}
+            {winner ? `Player ${winner} wins!` : "It's a draw!"}
             <button
               onClick={resetGame}
               className="bg-primary text-white px-4 py-2 rounded-md"
