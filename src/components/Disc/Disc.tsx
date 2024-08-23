@@ -11,7 +11,7 @@ function Disc({
 }) {
   return (
     <div
-      className={`rounded-full bg-primary h-28 aspect-square ease duration-200 ${ClassPosition} ${playerColor} `}
+      className={`rounded-full h-28 aspect-square ease duration-200 ${ClassPosition} ${playerColor} `}
       style={{ top: positionTop, left: positionLeft }}
     ></div>
   );
