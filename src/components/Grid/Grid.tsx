@@ -131,7 +131,6 @@ function Grid() {
           return (
             <Case
               key={index}
-              id={index}
               onHover={() => addTokenTop(columnIndex)}
               DiscPlayed={isDiscPlayed}
               playerColor={caseColors[index]}

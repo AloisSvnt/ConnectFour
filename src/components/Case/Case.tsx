@@ -1,11 +1,9 @@
 function Case({
-  id,
   onHover,
   onClick,
   DiscPlayed,
   playerColor,
 }: {
-  id: number;
   onHover: React.MouseEventHandler<HTMLDivElement>;
   onClick: React.MouseEventHandler<HTMLDivElement>;
   DiscPlayed: boolean;
